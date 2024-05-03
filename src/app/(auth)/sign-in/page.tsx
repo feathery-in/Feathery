@@ -34,6 +34,11 @@ import { signInSchema } from "@/schemas/signInSchema";
 import { Google, LogoIcon } from "@/components/Icons";
 // login
 import { useSession, signIn, signOut } from "next-auth/react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+
+
+
 export default function SignIn() {
   const { toast } = useToast();
   const [email, setEmail] = useState("");
@@ -97,8 +102,6 @@ export default function SignIn() {
           title: "Success",
           description: "Login successfull",
         });
-        // console.log("login response", response);
-        // router.push(`/`);
       }
       else{
         toast({
@@ -126,12 +129,15 @@ export default function SignIn() {
 
   return (
     <>
-      <Card className="mx-auto max-w-sm">
+    <div className="h-[100vh] flex items-center">
+
+    
+      <Card className="mx-auto max-w-sm w-full">
         <CardHeader>
-          <CardTitle className="text-xl text-center">Sign in</CardTitle>
+          <CardTitle className="text-xl text-center">Login</CardTitle>
 
           <CardDescription>
-            Enter your information to create an account
+            Enter your information to login to your account
           </CardDescription>
         </CardHeader>
 
@@ -155,7 +161,7 @@ export default function SignIn() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>email</FormLabel>
+                    <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="email"
@@ -183,6 +189,7 @@ export default function SignIn() {
                   </FormItem>
                 )}
               />
+              <FormLabel>Password</FormLabel>
               <FormField
                 control={form.control}
                 name="password"
@@ -190,13 +197,13 @@ export default function SignIn() {
                   <FormControl>
                     <div className="relative">
                       <div
-                        className="p-1  rounded-none absolute right-10 top-1 h-4 w-4 text-muted-foreground"
+                        className="p-1 rounded-none absolute right-5 top-1 h-4 w-4 text-muted-foreground dark:text-white text-black"
                         onClick={togglePasswordVisibility}
                       >
                         {showPassword ? (
-                          <Eye color="var(--fill-color)" size={30} />
-                        ) : (
-                          <EyeOff color="var(--fill-color)" size={30} />
+                           <FontAwesomeIcon icon={faEye} />
+                          ) : (
+                            <FontAwesomeIcon icon={faEyeSlash} />
                         )}
                       </div>
                       <Input
@@ -214,7 +221,7 @@ export default function SignIn() {
               />
               <Button
                 type="submit"
-                className="w-full  bg-gray-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                className="w-full text-white bg-gray-500 hover:bg-primary-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 disabled={isSubmiting}
               >
                 {isSubmiting ? (
@@ -223,7 +230,7 @@ export default function SignIn() {
                     Wait ....
                   </>
                 ) : (
-                  "Crate an Account"
+                  "Login"
                 )}
               </Button>
             </form>
@@ -236,6 +243,7 @@ export default function SignIn() {
           </div>
         </CardContent>
       </Card>
+      </div>
     </>
   );
 }

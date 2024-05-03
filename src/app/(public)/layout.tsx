@@ -29,7 +29,7 @@ export default function Layout({
               <SidBar/>
               {children}
             </div>
-            <Footer/>
+            
             <MobileNav/>
             <Toaster/>
           </body>

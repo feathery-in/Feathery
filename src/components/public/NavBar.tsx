@@ -17,9 +17,11 @@ import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { CircleUser, Leaf, Menu, UserCircle } from "lucide-react";
 import { ModeToggle } from "@/components/public/mde-toggel";
-import { LogOutIcon } from "lucide-react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFeatherPointed } from '@fortawesome/free-solid-svg-icons'
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -61,11 +63,12 @@ export default function NavBar() {
       <NavigationMenu className="mx-auto">
         <NavigationMenuList className="container h-14 px-4 w-screen flex justify-between ">
           <NavigationMenuItem className="font-bold flex gap-1">
-            <Leaf />
+
             <Link
               href="/"
               className="cursor-pointer flex items-center space-x-3 rtl:space-x-reverse"
             >
+            <FontAwesomeIcon icon={faFeatherPointed} size="xl" className="-mr-1 cursor-pointer"/>
               {/* <div className="fa-solid fa-feather-pointed dark:text-white text-lg"></div> */}
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                 Feathery

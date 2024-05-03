@@ -1,15 +1,11 @@
 "use client";
 import { Artical } from "@/components/profile/articel";
-import EditProfile from "@/components/profile/editProfile";
 import Follower from "@/components/profile/follower";
 import Post from "@/components/profile/post";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import axios from "axios";
-import { Activity, CreditCard, Divide, DollarSign, Users } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 
@@ -57,9 +53,9 @@ export default function PublicProfile({ params }: any) {
     <div className="w-full  flex justify-center bg-[#c9ced3] dark:bg-black dark:text-white min-h-[100vh] h-[100%] ">
         <div className="w-full h-full flex justify-center">
           <div className=" mt-12 pb-20 max-w-[800px] w-[100%]">
-            <div className="p-4 profile-section grid grid-cols-[auto,1fr] gap-4 w-[100%] h-auto border-b dark:border-white border-black max-sm:pb-5">
+            <div className="p-4 profile-section grid grid-cols-[auto,1fr] gap-4 w-[100%] h-auto border-b : border-black max-sm:pb-5">
               <div className="min-w-max max-sm:-m-5 max-sm:mt-1 p-4 max-md:w-32 flex flex-col items-center ">
-                <Avatar className="max-md:h-20 max-md:w-20 h-40 w-40 rounded-full border-4 object-cover border-white mx-auto md:mx-0 bg-white"
+                <Avatar className="max-md:h-20 max-md:w-20 h-40 w-40 rounded-full border-4 object-cover mx-auto md:mx-0 bg-white"
 >
                   <AvatarImage src={rsponsedat?.image!}alt={rsponsedat?.username!}/>
                   <AvatarFallback>
@@ -180,22 +176,22 @@ export default function PublicProfile({ params }: any) {
             {/* <!-- Add other sections as needed --> */}
             <Tabs defaultValue="post" className="">
               <TabsList className="grid w-full grid-cols-4">
+                <TabsTrigger value="about">
+                  About
+                  {/* <Link href={`/${params.username}/post`}>Post</Link> */}
+                </TabsTrigger>
                 <TabsTrigger value="post">
-                  Post
+                  Posts
                   {/* <Link href={`/${params.username}/post`}>Post</Link> */}
                 </TabsTrigger>
                 <TabsTrigger value="artical">
                   {" "}
                   {/* <Link href={`/${params.username}/artical`}>Artical</Link> */}
-                  Artical
+                  Articles
                 </TabsTrigger>
                 <TabsTrigger value="short">
                   {/* <Link href={`/${params.username}/short`}>Short</Link> */}
-                  Short
-                </TabsTrigger>
-                <TabsTrigger value="follower">
-                  {/* <Link href={`/${params.username}/follower`}>Follower</Link> */}
-                  Follower
+                  Projects
                 </TabsTrigger>
               </TabsList>
               <ScrollArea className="h-[570px]">
