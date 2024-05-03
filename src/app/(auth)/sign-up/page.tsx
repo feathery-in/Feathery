@@ -32,6 +32,11 @@ import {
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { Google } from "@/components/Icons";
 import { signIn, useSession } from "next-auth/react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+
+
+
 export default function SignUp() {
   const { toast } = useToast();
   const [username, setUsername] = useState("");
@@ -152,8 +157,8 @@ export default function SignUp() {
 
   return (
     <>
-      <span className="">the anant</span>
-      <Card className="mx-auto max-w-sm">
+    <div className="h-[100vh] flex items-center">
+      <Card className="mx-auto max-w-sm w-full">
         <CardHeader>
           <CardTitle className="text-xl text-center">Sign Up</CardTitle>
           <CardDescription>
@@ -180,7 +185,7 @@ export default function SignUp() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Full name</FormLabel>
+                    <FormLabel>Full Name</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="name"
@@ -259,6 +264,7 @@ export default function SignUp() {
                   </FormItem>
                 )}
               />
+              <FormLabel>Password</FormLabel>
               <FormField
                 control={form.control}
                 name="password"
@@ -266,13 +272,13 @@ export default function SignUp() {
                   <FormControl>
                     <div className="relative">
                       <div
-                        className="p-1  rounded-none absolute right-10 top-1 h-4 w-4 text-muted-foreground"
+                        className="p-1 rounded-none absolute right-5 top-1 h-4 w-4 text-muted-foreground dark:text-white text-black"
                         onClick={togglePasswordVisibility}
                       >
                         {showPassword ? (
-                          <Eye color="var(--fill-color)" size={30} />
+                          <FontAwesomeIcon icon={faEye} />
                         ) : (
-                          <EyeOff color="var(--fill-color)" size={30} />
+                          <FontAwesomeIcon icon={faEyeSlash} />
                         )}
                       </div>
                       <Input
@@ -290,7 +296,7 @@ export default function SignUp() {
               />
               <Button
                 type="submit"
-                className="w-full  bg-gray-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                className="w-full  bg-gray-500 hover:bg-primary-700 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 disabled={isSubmiting}
               >
                 {isSubmiting ? (
@@ -307,11 +313,12 @@ export default function SignUp() {
           <div className="mt-4 text-center text-sm">
             Already have an account?{" "}
             <Link href="sign-in" className="underline">
-              Sign in
+              Login
             </Link>
           </div>
         </CardContent>
       </Card>
+      </div>
     </>
   );
 }

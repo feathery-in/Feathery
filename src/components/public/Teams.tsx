@@ -86,7 +86,7 @@ const teamList: TeamProps[] = [
     imageUrl: vipra,
     name: "Vipra Dave",
     position: "Social Media Lead and Designer",
-    content:"Building Feathery.in",
+    content:"Seize the day",
     socialNetworks: [
       { name: "Linkedin", url: "https://www.linkedin.com/in/vipra-dave/" },
       {

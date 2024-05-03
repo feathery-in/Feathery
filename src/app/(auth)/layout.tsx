@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import AuthProvider from '@/context/authProvider'
+import AuthProvider from '@/context/authProvider';
 import NavBar from "@/components/public/NavBar";
 import { ThemeProvider } from "@/context/themProvider";
 import { Toaster } from "@/components/ui/toaster";
+import Footer from "@/components/public/footer";
 
 export const metadata: Metadata = {
   title: "Feathery",
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body>
         <NavBar/>
         {children}
+        <Footer/>
         <Toaster/>
         </body>
         </ThemeProvider>
