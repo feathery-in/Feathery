@@ -84,8 +84,7 @@ export default function VerifyAccount() {
           Verify Your Account
         </CardTitle>
         <CardDescription>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut quisquam
-          culpa ducimus possimus, veniam tempora!
+          Kindly check you email for OTP validation! 
         </CardDescription>
       </CardHeader>
       <CardContent>
