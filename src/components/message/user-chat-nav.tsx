@@ -31,12 +31,12 @@ export default function UserChatNav(){
             src={session.data?.user.image!}
             alt={session.data?.user.username}
           />
-          <AvatarFallback>
+          {/* <AvatarFallback>
             {session?.data?.user
               ?.fullname!.split(" ")
               .map((chunk) => chunk[0])
               .join("")}
-          </AvatarFallback>
+          </AvatarFallback> */}
         </Avatar>
         <span className="font-bold">{session.data?.user.fullname}</span>
       </div>
