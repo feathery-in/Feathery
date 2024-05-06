@@ -1,5 +1,4 @@
 import React from 'react'
-import '@fortawesome/fontawesome-free/css/all.css';
 import Image from "next/image";
 import sampleImage from "../public/img/sample-image.jpeg"
 export function Artical() {
