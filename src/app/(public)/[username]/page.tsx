@@ -88,15 +88,15 @@ export default function PublicProfile({ params }: any) {
                     </div>
                     <div className="flex">
                       {/* <!-- <button className="bg-blue-500 text-white px-4 py-1 rounded-md max-md:hidden" *ngIf="user._id !== loginUser.userId " (click)="followUser(user._id)">Follow</button> --> */}
-                      {/* <button className="bg-blue-500 text-white px-4 py-1 rounded-md max-md:hidden">
+                      <button className="bg-blue-500 text-white px-4 py-1 rounded-md max-md:hidden">
                         Follow
                       </button>
                       <button className="bg-[#f1f1f1] dark:bg-[#212121] dark:text-white px-4 py-1 rounded-md max-md:hidden">
                         Unfollow
-                      </button> */}
-                      <button className="bg-blue-500 text-white px-4 py-1 rounded-md max-md:hidden">
-                        Edit
                       </button>
+                      <Link href={'/account/profile-edit'} className="bg-blue-500 text-white px-4 py-1 rounded-md max-md:hidden">
+                        Edit
+                      </Link>
                     </div>
                   </div>
                   <div className="flex space-x-5 md:mt-4 max-sm:w-[80%]">
@@ -132,67 +132,14 @@ export default function PublicProfile({ params }: any) {
               </div>
             </div>
 
-            {/* <div className="profile-tabs text-sm font-medium text-center text-gray-500 border-b border-transparent ">
-          <ul className="flex flex-wrap -mb-px">
-              <li className="me-2">
-                  <a className="inline-block p-4 active rounded-t-lg hover:text-blue-600 "
-                    [className.border-b-2]="selectedTab == 'posts'"
-                    [className.text-blue-600]="selectedTab == 'posts'"
-                     [className.border-blue-600]="selectedTab == 'posts'"
-                     (click)="selectedTab = 'posts'">Posts</a>
-              </li>
-              <li className="me-2">
-                  <a className="inline-block p-4 hover:text-blue-600 rounded-t-lg "
-                     [className.border-b-2]="selectedTab == 'articles'"
-                     [className.text-blue-600]="selectedTab == 'articles'"
-                     [className.border-blue-600]="selectedTab === 'articles'"
-                     (click)="selectedTab = 'articles'">Articles</a>
-                     
-              </li>
-              <li className="me-2">
-                  <a className="inline-block p-4 rounded-t-lg hover:text-blue-600 "
-                      [className.border-b-2]="selectedTab == 'communities'"
-                     [className.text-blue-600]="selectedTab == 'communities'"
-                     [className.border-blue-600]="selectedTab == 'communities'"
-                     (click)="selectedTab = 'communities'">Communities</a>
-              </li>
-              
-          </ul>
-        </div> */}
+   
 
-            {/* <div className="mt-8 mb-[100px]">
-          <!-- <div style="display: flex; justify-content: center; align-items: center; height:100%;">
-              <img src="https://aryan1982.github.io/Feathery-client/assets/icons/spinner2.gif" alt="loading" className="h-10">
-          </div> -->
-          
-          <!-- Article list -->
-          <app-article-list [allArticles]="allArticles"></app-article-list>
-          
-          <!-- not in use -->
-
-          
-        </div> */}
+         
 
             {/* <!-- Add other sections as needed --> */}
             
 
-{/* <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
-    <li class="me-2">
-        <a href="#" aria-current="page" class="inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500">Profile</a>
-    </li>
-    <li class="me-2">
-        <a href="#" class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Dashboard</a>
-    </li>
-    <li class="me-2">
-        <a href="#" class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Settings</a>
-    </li>
-    <li class="me-2">
-        <a href="#" class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Contacts</a>
-    </li>
-    <li>
-        <a class="inline-block p-4 text-gray-400 rounded-t-lg cursor-not-allowed dark:text-gray-500">Disabled</a>
-    </li>
-</ul> */}
+
 
             <Tabs defaultValue="post" className="">
               <TabsList className="grid w-full grid-cols-4">

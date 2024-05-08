@@ -24,17 +24,18 @@ export async function GET(req:Request){
             },{status:400})
         }
         const {email}=result.data
-        const existingVerifiedUser=await UserModel.findOne({email,isVerified:true})
-        if(existingVerifiedUser){
+        const existingVerifiedUser=await UserModel.findOne({email}) /// add is varified true 
+        if(!existingVerifiedUser){
             return Response.json({
-                success:false,
-                message:'email is Valid'
-            },{status:200})
-        }
-        return Response.json({
             success:true,
             message:'email is not register go to sign-up page first'
         },{status:201})
+        }
+        return Response.json({
+            success:false,
+            message:'email is Valid'
+        },{status:200})
+        
     } catch (error:any) {
         console.error("Error during chacking email ",error)
         return Response.json({

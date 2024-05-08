@@ -1,6 +1,6 @@
 "use client"
 import { Separator } from "@/components/ui/separator"
-import { ProfileForm } from "@/components/edit-profile/profile-form"
+import ProfileForm from "@/components/edit-profile/profile-form"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 

@@ -14,9 +14,9 @@ export default function Upload(){
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Add New</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem><Link href={'/user_account/add-post'}>New Post</Link></DropdownMenuItem>
+              <DropdownMenuItem><Link href={'/account/add-post'}>New Post</Link></DropdownMenuItem>
               <DropdownMenuItem><Link href={'/account/add-article'}>New Artical</Link></DropdownMenuItem>
-              <DropdownMenuItem><Link href={'/user_account/add-video'}>New Vodeo</Link></DropdownMenuItem>
+              <DropdownMenuItem><Link href={'/account/add-video'}>New Vodeo</Link></DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem><Link href={'/'}>Go to Landing Page</Link></DropdownMenuItem>
             </DropdownMenuContent>

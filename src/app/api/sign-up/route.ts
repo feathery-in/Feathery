@@ -57,6 +57,7 @@ export async function POST(req: Request) {
         name,
         username,
         email,
+        bio:'',
         password: hasPassword,
         verifyCode: verifyCode,
         verifyCodeExpiry: expiryDate,
