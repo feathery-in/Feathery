@@ -64,7 +64,7 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.SECRET,
   callbacks: {
     async signIn({user, account, profile}) {
-      console.log('user',user,'account',account,'Profile',profile)
+      // console.log('user',user,'account',account,'Profile',profile)
         await dbConnect();
         await UserModel.updateOne(
           { email: user.email },

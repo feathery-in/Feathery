@@ -21,10 +21,10 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="">
+    <html lang="en">
       <AuthProvider>
         <ThemeProvider>
-          <body className="">
+          <body>
             <NavBar/>
             <div className="flex">
               <SidBar/>

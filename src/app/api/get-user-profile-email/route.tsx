@@ -1,9 +1,9 @@
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/models/User.model";
 import {z} from 'zod'
-import { usernameValidation } from "@/schemas/signUpSchema";
-const UserNameQuerySchema=z.object({
-    username:usernameValidation
+import { emailValidation } from "@/schemas/signInSchema";
+const UserEmailQuerySchema=z.object({
+    useremail:emailValidation
 })
 
 export async function GET(req:Request){
@@ -11,22 +11,23 @@ export async function GET(req:Request){
     try {
         const {searchParams} =new URL(req.url)
         const queryParam={
-            username:searchParams.get('username')
+            useremail:searchParams.get('email')
         }
         // validate with zod
-        const result=UserNameQuerySchema.safeParse(queryParam)
+        const result=UserEmailQuerySchema.safeParse(queryParam)
         // console.log(result)
         if(!result.success){
-            const usernameErrors=result.error.format().username?._errors ||[]
+            const useremailErrors=result.error.format().useremail?._errors ||[]
             return Response.json({
-                message:usernameErrors?.length>0?usernameErrors.join(', '):'Invalid Query Parameters',
+                message:useremailErrors?.length>0?useremailErrors.join(', '):'Invalid Query Parameters',
                 success:false
             },{status:400})
         }
-        const {username}=result.data
-        // const username='anand'
-        // console.log(username)
-        const user=await UserModel.findOne({username}) //
+        const {useremail}=result.data
+        // const useremail='anand@gmila.com'
+        // const useremail='anantkumar012002@gmail.com'
+        // console.log(useremail)
+        const user = await UserModel.findOne({ email:useremail });
         // console.log(user)
         
         if(!user){
@@ -51,13 +52,13 @@ export async function GET(req:Request){
         return Response.json({
             success:true,
             userDetails,
-            message:'Username is avlable'
+            message:'user find success full'
         },{status:201})
     } catch (error:any) {
-        console.error("Error during chacking username ",error)
+        console.error("Error during finding user ",error)
         return Response.json({
             success:false,
-            message:"Error during checking user name"
+            message:"Error during finding user"
         },{status:500})
     }
 }

@@ -129,10 +129,10 @@ export default function SignIn() {
 
   return (
     <>
-    <div className="h-[100vh] flex items-center">
+    <div className=" flex items-center">
 
     
-      <Card className="mx-auto max-w-sm w-full">
+      <Card className="mx-auto max-w-sm w-full my-10">
         <CardHeader>
           <CardTitle className="text-xl text-center">Login</CardTitle>
 
@@ -177,7 +177,7 @@ export default function SignIn() {
                     )}
                     <p
                       className={`text-sm ${
-                        emailMessage[0] === "email is Valid"
+                        emailMessage=== "email is Valid"
                           ? "text-green-500"
                           : "text-red-500"
                       }`}

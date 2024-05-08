@@ -1,30 +1,14 @@
 import {
-    Badge,
-    Bell,
-    Home,
-    LineChart,
-    Newspaper,
-    Package,
-    Package2,
-    Settings,
-    ShoppingCart,
-    Users,
-    Users2,
-    VideoIcon,
-  } from "lucide-react";
-  import { Button } from "./ui/button";
-  import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-  } from "./ui/card";
-  import Link from "next/link";
-  import { ScrollArea } from "./ui/scroll-area";
-  import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
-  import NavBar from "./NavBar";
+  Home,
+  LineChart,
+  Newspaper,
+  Settings,
+  Users2
+} from "lucide-react";
+import Link from "next/link";
+import NavBar from "./NavBar";
 import Upload from "./Upload";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
   
   export default function SidBar() {
     return (

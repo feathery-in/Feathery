@@ -3,7 +3,7 @@
 import { writeFile } from "fs/promises";
 import uniqid from "uniqid";
 import {uploadOnCloudinary} from "./cloudinary"
-
+import {v2 as cloudinary} from 'cloudinary';
 
 let imageArr=[]
 export const UploadImage=async (req)=>{
@@ -26,4 +26,19 @@ export const UploadImage=async (req)=>{
     return imageArr;
 }
 
-
+export const deleteFromCloudinary = async (publicId, resourceType = "image") => {
+    try {
+      console.log("punlic id form delet function",publicId)
+      if (!publicId) return null;
+  
+      // delete from cloudinary
+      const response = await cloudinary.uploader.destroy(publicId, {
+        resource_type: resourceType,
+      });
+  
+      return response;
+    } catch (error) {
+      console.log(error.message);
+      return null;
+    }
+  };

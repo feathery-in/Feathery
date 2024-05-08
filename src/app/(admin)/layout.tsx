@@ -24,12 +24,16 @@ export default function Layout({
       <AuthProvider>
         <ThemeProvider>
           <body className="">
-            <Hader/>
-            <div className="flex">
+            <NavBar/>
+           
               <SidBar/>
-              {children}
-            </div>
-            <Footer/>
+              <div className="lg:ml-16 md:ml-14">
+                {children}
+                <Footer/>
+              </div>
+              
+        
+            
             <MobileNav/>
             <Toaster/>
           </body>

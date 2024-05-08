@@ -24,7 +24,7 @@ export async function GET(req:Request){
             },{status:400})
         }
         const {email}=result.data
-        const existingVerifiedUser=await UserModel.findOne({email,isVerified:true})
+        const existingVerifiedUser=await UserModel.findOne({email}) /// add is verifierd also for 
         if(existingVerifiedUser){
             return Response.json({
                 success:false,

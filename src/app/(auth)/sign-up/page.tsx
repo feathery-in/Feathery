@@ -157,8 +157,8 @@ export default function SignUp() {
 
   return (
     <>
-    <div className="h-[100vh] flex items-center">
-      <Card className="mx-auto max-w-sm w-full">
+    <div className=" flex items-center">
+      <Card className="mx-auto max-w-sm w-full my-10">
         <CardHeader>
           <CardTitle className="text-xl text-center">Sign Up</CardTitle>
           <CardDescription>
@@ -276,9 +276,9 @@ export default function SignUp() {
                         onClick={togglePasswordVisibility}
                       >
                         {showPassword ? (
-                          <FontAwesomeIcon icon={faEye} />
+                          <FontAwesomeIcon color="var(--fill-color)" icon={faEye} />
                         ) : (
-                          <FontAwesomeIcon icon={faEyeSlash} />
+                          <FontAwesomeIcon color="var(--fill-color)" icon={faEyeSlash} />
                         )}
                       </div>
                       <Input

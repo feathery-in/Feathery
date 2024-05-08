@@ -1,4 +1,4 @@
-"ise client"
+"use client"
 import { LeafIcon } from "lucide-react";
 import Link from "next/link";
 import AddUsers from "../Chat/AddUser";
@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 export default function UserChatNav(){
-    const router = useRouter();
+  const router = useRouter();
   const session = useSession();
   if (session.status === "unauthenticated") {
     router.push("/login");
