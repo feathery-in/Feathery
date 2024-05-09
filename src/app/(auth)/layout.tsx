@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "../globals.css";
 import AuthProvider from '@/context/authProvider';
-import NavBar from "@/components/public/NavBar";
+import NavBar from "@/components/auth/NavBar";
 import { ThemeProvider } from "@/context/themProvider";
 import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/components/public/footer";

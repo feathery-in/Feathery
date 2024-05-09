@@ -72,7 +72,7 @@ const teamList: TeamProps[] = [
   {
     imageUrl: jenish,
     name: "Jenish Patel",
-    position: "UI / UX Designer",
+    position: "Graphics Designer",
     content:"Building Feathery.in",
     socialNetworks: [
       { name: "Linkedin", url: "https://www.linkedin.com/in/jenishpatel05/" },
