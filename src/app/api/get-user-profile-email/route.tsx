@@ -2,11 +2,15 @@ import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/models/User.model";
 import {z} from 'zod'
 import { emailValidation } from "@/schemas/signInSchema";
+import { authOptions } from "../auth/[...nextauth]/options";
+import { getServerSession } from "next-auth";
 const UserEmailQuerySchema=z.object({
     useremail:emailValidation
 })
 
 export async function GET(req:Request){
+    const session= await getServerSession(authOptions)
+    
     await dbConnect()
     try {
         const {searchParams} =new URL(req.url)
@@ -29,25 +33,64 @@ export async function GET(req:Request){
         // console.log(useremail)
         const user = await UserModel.findOne({ email:useremail });
         // console.log(user)
-        
-        if(!user){
+        const userDetails=await UserModel.aggregate([
+            {
+                $match:{
+                    email:useremail
+               }
+            },
+            {
+                $lookup:{
+                    from:"subscription",
+                    localField:"_id",
+                    foreignField:"follower",
+                    as:"follower"
+                }
+            },
+            {
+                $lookup:{
+                    from:"subscription",
+                    localField:"_id",
+                    foreignField:"following",
+                    as:"following"
+                }
+            },
+            {
+                $addFields:{
+                    followerCount:{
+                        size:"$follower"
+                    },
+                    followingCount:{
+                        $size:"$following"
+                    },
+                    isfollow:{
+                        $cond:{
+                            if:{$in:[session?.user._id?.toString(),"$follower.following"]},
+                            then:true,
+                            else:false
+                        }
+                    }
+                }
+            },
+            {
+                $project:{
+                    fullname:1,
+                    usernaem:1,
+                    followerCount:1,
+                    followingCount:1,
+                    isfollow:1,
+                    image:1,
+                    email:1,
+                }
+            }
+        ])
+        if(!userDetails.length){
             return Response.json({
                 success:false,
                 message:'User Not found'
             },{status:201})
         }
-        const userDetails = {
-            _id: user._id,
-            username: user.username,
-            name: user.name,
-            email: user.email,
-            followers: user.followers,
-            following: user.following,
-            image: user.image,
-            imgPublicId: user.imgPublicId,
-            message: user.message,
-            __v: user.__v
-          };
+
         // console.log(userDetails)
         return Response.json({
             success:true,

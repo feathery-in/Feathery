@@ -2,11 +2,15 @@ import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/models/User.model";
 import {z} from 'zod'
 import { usernameValidation } from "@/schemas/signUpSchema";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/options";
 const UserNameQuerySchema=z.object({
     username:usernameValidation
 })
 
 export async function GET(req:Request){
+    const session= await getServerSession(authOptions)
+
     await dbConnect()
     try {
         const {searchParams} =new URL(req.url)
@@ -26,35 +30,71 @@ export async function GET(req:Request){
         const {username}=result.data
         // const username='anand'
         // console.log(username)
-        const user=await UserModel.findOne({username}) //
-        // console.log(user)
-        
-        if(!user){
+        const userDetails=await UserModel.aggregate([
+            {
+                $match:{
+                    username:username
+               }
+            },
+            {
+                $lookup:{
+                    from:"subscription",
+                    localField:"_id",
+                    foreignField:"follower",
+                    as:"follower"
+                }
+            },
+            {
+                $lookup:{
+                    from:"subscription",
+                    localField:"_id",
+                    foreignField:"following",
+                    as:"following"
+                }
+            },
+            {
+                $addFields:{
+                    followerCount:{
+                        size:"$follower"
+                    },
+                    followingCount:{
+                        $size:"$following"
+                    },
+                    isfollow:{
+                        $cond:{
+                            if:{$in:[session?.user._id?.toString(),"$follower.following"]},
+                            then:true,
+                            else:false
+                        }
+                    }
+                }
+            },
+            {
+                $project:{
+                    fullname:1,
+                    usernaem:1,
+                    followerCount:1,
+                    followingCount:1,
+                    isfollow:1,
+                    image:1,
+                    email:1,
+                }
+            }
+        ])
+        if(!userDetails.length){
             return Response.json({
                 success:false,
                 message:'User Not found'
             },{status:201})
         }
-        const userDetails = {
-            _id: user._id,
-            username: user.username,
-            name: user.name,
-            email: user.email,
-            followers: user.followers,
-            following: user.following,
-            image: user.image,
-            imgPublicId: user.imgPublicId,
-            message: user.message,
-            __v: user.__v
-          };
         // console.log(userDetails)
         return Response.json({
             success:true,
             userDetails,
-            message:'Username is avlable'
+            message:'Get user profile successfully'
         },{status:201})
     } catch (error:any) {
-        console.error("Error during chacking username ",error)
+        console.error("Error during get profile details by username  ",error)
         return Response.json({
             success:false,
             message:"Error during checking user name"

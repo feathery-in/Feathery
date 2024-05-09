@@ -69,7 +69,7 @@ export const authOptions: NextAuthOptions = {
         await UserModel.updateOne(
           { email: user.email },
           
-          { $set: { email: user.email, image:user.image,name:user.name,username:(user.email)?.split("@")[0]} },
+          { $set: { email: user.email, image:user.image,name:user.name,username:(user.email)?.split("@")[0].replace(/[^\w.-]/g, '')} },
           { upsert: true }
         );
         return true;
