@@ -66,25 +66,15 @@ export const authOptions: NextAuthOptions = {
     async signIn({user, account, profile}) {
       // console.log('user',user,'account',account,'Profile',profile)
         await dbConnect();
-        await UserModel.updateOne(
+        const saveuser=await UserModel.updateOne(
           { email: user.email },
-          
-          { $set: { email: user.email, image:user.image,name:user.name,username:(user.email)?.split("@")[0].replace(/[^\w.-]/g, '')} },
+          { $set: { isVerified:true,email: user.email, image:user.image,name:user.name,username:user.username||(user.email)?.split("@")[0].replace(/[^a-zA-Z0-9_]/g, '')} },
           { upsert: true }
         );
         return true;
-      },
+    },
 
-    // async session({session, user}) {
-    //     // Customize the session here
-    //     session.user = {
-    //       image:user.image,
-    //       email: user.email,
-    //       name: user.name!,
-    //       username:user.email.split("@")[0]
-    //       // Add any other user properties you need
-    //     };
-    //   },
+    
         
     async jwt({ token, user }) {
       if (user) {
@@ -96,14 +86,18 @@ export const authOptions: NextAuthOptions = {
       }
       return token;
     },
-    async session({ session, token }) {
+    async session({ session, token,user }) {
+      await dbConnect()
+      const email=session.user.email
+      const userData = await UserModel.findOne({email})
       if (token) {
-        session.user._id = token._id;
-        session.user.isVerified = token.isVerified;
-        session.user.isAccpetingMessages = token.isAccpetingMessages;
-        session.user.username = token.username;
-        session.user.name = token.name;
+        session.user._id = token._id || userData?._id.toString();
+        session.user.isVerified = token.isVerified || userData?.isVerified;
+        session.user.isAccpetingMessages = token.isAccpetingMessages||userData?.isAcceptingMessage;
+        session.user.username = token.username || userData?.username;
+        session.user.name = token.name ||userData?.name;
       }
+      // console.log(session)
       return session;
     },
   },

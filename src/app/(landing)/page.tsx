@@ -8,6 +8,7 @@ import Team from "@/components/public/Teams"
 import { Testimonials } from "@/components/public/Testimonials"
 import { useSession } from "next-auth/react"
 import NavBar from "@/components/public/NavBar";
+import Newsletter from "@/components/public/NewsLatter"
 
 export default function Home() {
     const session = useSession()
@@ -22,6 +23,7 @@ export default function Home() {
                 <Testimonials />
                 <Team />
                 <FAQ />
+                <Newsletter/>
             </div>
 
         </>

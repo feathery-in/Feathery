@@ -1,10 +1,12 @@
 import mongoose,{Schema,Document} from "mongoose";
-import mongooseAggregatePaginate from 'mongoose-aggregate-paginate-v2'
+import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
+
+
 export interface Post{
     title:string,
     description:string
     img:[]
-    admin:{};
+    admin:Schema.Types.ObjectId;
 }
 
 const PostSchema:Schema<Post>=new Schema({

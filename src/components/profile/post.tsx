@@ -1,23 +1,21 @@
-import React from "react";
+import messages from "@/data/message.json";
+import {
+  faComment,
+  faShare,
+  faThumbsUp,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import aryan from "../public/img/landing-page-people/aryan-thakor.jpg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faThumbsUp,
-  faShare,
-  faComment,
-} from "@fortawesome/free-solid-svg-icons";
-import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Mail } from "lucide-react";
-import Autoplay from "embla-carousel-autoplay";
-import messages from "@/data/message.json";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion";
+import { Card } from "../ui/card";
+import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 export default function Post() {
   return (
     <>
@@ -47,7 +45,7 @@ export default function Post() {
             </Accordion>
           </div>
           <Carousel
-            plugins={[Autoplay({ delay: 2000 })]}
+            plugins={[Autoplay({ delay: 10000 })]}
             className="w-full max-w-lg md:max-w-xl"
           >
             <CarouselContent>

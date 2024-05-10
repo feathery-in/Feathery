@@ -34,6 +34,8 @@ import { Textarea } from "../ui/textarea";
 import { toast } from "../ui/use-toast";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import React from "react";
+import { useRouter } from "next/navigation";
 
 const profileFormSchema = z.object({
   title: z
@@ -45,11 +47,12 @@ const profileFormSchema = z.object({
       message: "Username must not be longer than 30 characters.",
     }),
   description: z.string().max(160).min(4),
-  img: z.array(
-    z.object({
-      value: z.any(),
-    })
-  )
+  img: z
+    .array(
+      z.object({
+        value: z.any(),
+      })
+    )
     .optional(),
 });
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
@@ -63,21 +66,28 @@ type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 export default function PostAdd() {
   // console.log('user name is ',userName)
+  const router =useRouter()
   const session = useSession();
+  console.log(session)
+  if(session.status==='unauthenticated'&& !session.data){
+    router.replace('/sign-in')
+  }
+  
   const useremail = session?.data?.user.email;
   const [selectedImage, setSelectedImage] = useState<File[]>([]);
+  const [message, setMessage] = React.useState("");
   const imageChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      console.log(e.target.files[0])
+      console.log(e.target.files[0]);
       const file = e.target.files[0];
       setSelectedImage([...selectedImage, file]);
       // setSelectedImage(e.target.files[0]);
     }
   };
-  console.log(selectedImage)
+  // console.log(selectedImage);
   const defaultValues: Partial<ProfileFormValues> = {
     description: "Do somthing.",
-    img: []
+    img: [],
   };
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
@@ -93,7 +103,7 @@ export default function PostAdd() {
     console.log(selectedImage);
     // image upload
     // console.log(data);
-    if (selectedImage.length > 0) {
+    if (selectedImage.length > 0 && session.status==='authenticated') {
       const formData = new FormData();
       Array.from(selectedImage).forEach((file, index) => {
         formData.append(`file[${index}]`, file);
@@ -109,29 +119,41 @@ export default function PostAdd() {
           const response = await axios
             .post("/api/add-post", { data, urlsAndPublicIds, useremail })
             .then(async (response) => {
-              console.log("response after save", response);
+              // console.log("response after save", response);
+              let message = response.data.message;
+              setMessage(message);
             });
           toast({
-            title: "Ppst Added",
-            description: "Post Added successfully successfully ",
+            title: "Post Added",
+            description:message,
+            variant: "destructive",
           });
         }
       } catch (error: any) {
         console.log("error during adding post", error);
+        const axiosError = error as AxiosError<ApiResponse>;
+        setMessage(
+          axiosError.response?.data.message ??
+            "Error checking Email Please try again"
+        );
         toast({
           title: "Post Added",
-          description: "Post added failed Please try Again ",
+          description: message,
+          variant: "destructive",
         });
       }
     } else {
       const response = await axios
         .post("/api/add-post", { data, useremail })
         .then(async (response) => {
-          console.log("response after save", response);
+          // console.log("response after save", response);
+          let message = response.data.message;
+              setMessage(message);
         });
       toast({
-        title: "Ppst Added",
-        description: "Post Added successfully successfully ",
+        title: `Error post added`,
+        description: message,
+        variant: "destructive",
       });
     }
   };
@@ -159,7 +181,7 @@ export default function PostAdd() {
             >
               <PlusCircle />
             </Button>
-            <Button
+            {/* <Button
               type="button"
               variant="outline"
               size="sm"
@@ -167,7 +189,7 @@ export default function PostAdd() {
               onClick={() => setSelectedImage([])}
             >
               <PlusCircle />
-            </Button>
+            </Button> */}
           </div>
         </CardHeader>
         <CardContent>
