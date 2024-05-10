@@ -129,7 +129,7 @@ export default function SignIn() {
 
   return (
     <>
-    <div className=" flex items-center">
+    <div className=" flex items-center min-h-[100vh]">
 
     
       <Card className="mx-auto max-w-sm w-full my-10">
