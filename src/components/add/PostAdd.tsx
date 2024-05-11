@@ -155,12 +155,12 @@ export default function PostAdd() {
         description: message,
         variant: "destructive",
       });
-    }
+    };
   };
 
   return (
     <>
-      <Card className="mx-auto max-w-sm">
+      <Card className="mx-auto max-w-sm mb-5">
         <CardHeader>
           <CardTitle>Post details</CardTitle>
           <CardDescription className="mx-[40%]"></CardDescription>
@@ -200,11 +200,11 @@ export default function PostAdd() {
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>title</FormLabel>
+                    <FormLabel>Title</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Name "
-                        defaultValue="title..."
+                        placeholder="Add a catchy title... "
+                        defaultValue=""
                         {...field}
                       />
                     </FormControl>
@@ -218,7 +218,7 @@ export default function PostAdd() {
                   <FormItem>
                     <FormLabel>Description</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="about your post " {...field} />
+                      <Textarea placeholder="Enter Details..."{...field} />
                     </FormControl>
                   </FormItem>
                 )}
