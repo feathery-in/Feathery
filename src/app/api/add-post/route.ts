@@ -17,7 +17,7 @@ export async function POST(req: Request) {
       message: "go to login first ",
     });
   }
-  if (!session.user._id) {
+  if (session.user._id) {
     try {
       if (session?.user.email === user.useremail && session.user._id) {
         await dbConnect();

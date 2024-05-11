@@ -77,9 +77,14 @@ export default function SignUp() {
           const response = await axios.get(
             `/api/check-username-unique?username=${username}`
           );
-          // console.log(response.data.message)
           let message = response.data.message;
+
+            
+          // console.log(response.data.message)
+          
           setUsernameMessage(message);
+   
+          
         } catch (error: any) {
           const axiosError = error as AxiosError<ApiResponse>;
           setUsernameMessage(
@@ -103,9 +108,14 @@ export default function SignUp() {
           const response = await axios.get(
             `/api/check-email-register?email=${email}`
           );
-          // console.log(response.data.message)
           let message = response.data.message;
+          
+            
+          // console.log(response.data.message)
+          
           setEmailMessage(message);
+      
+          
         } catch (error: any) {
           const axiosError = error as AxiosError<ApiResponse>;
           setEmailMessage(

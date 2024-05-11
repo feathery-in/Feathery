@@ -65,15 +65,15 @@ const posts = [
 ];
 
 export default function postList() {
-  useEffect(() => {
-    const getAllPost = async () => {
-      try {
-        const response = await axios.get(`/api/get-all-post`);
-        console.log(response);
-      } catch (error: any) {}
-    };
-    getAllPost();
-  }, []);
+  // useEffect(() => {
+  //   const getAllPost = async () => {
+  //     try {
+  //       const response = await axios.get(`/api/get-all-post`);
+  //       console.log(response);
+  //     } catch (error: any) {}
+  //   };
+  //   getAllPost();
+  // }, []);
   return (
     <>
       {posts.map((post) => (
@@ -101,9 +101,9 @@ export default function postList() {
             <Carousel className="w-full max-w-lg md:max-w-xl">
               <CarouselContent>
                 {messages.map((message, index) => (
-                  <CarouselItem>
+                  <CarouselItem key={index}>
                     <Card>
-                      <img src={post.image} />
+                      <Image src={post.image} alt=" "/>
                     </Card>
                   </CarouselItem>
                 ))}

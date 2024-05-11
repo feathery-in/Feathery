@@ -86,7 +86,7 @@ export default function PostAdd() {
   };
   // console.log(selectedImage);
   const defaultValues: Partial<ProfileFormValues> = {
-    description: "Do somthing.",
+    description: "",
     img: [],
   };
   const form = useForm<ProfileFormValues>({
@@ -151,7 +151,7 @@ export default function PostAdd() {
               setMessage(message);
         });
       toast({
-        title: `Error post added`,
+        title: `post added success`,
         description: message,
         variant: "destructive",
       });

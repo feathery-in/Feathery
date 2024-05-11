@@ -7,9 +7,9 @@ export function Artical() {
       <div className="col-span-2 row-span-2 rounded-tl-lg">
         <div className="flex flex-col h-40 justify-around pr-4 pb-4 pl-4 max-h-40 cursor-pointer">
           <div className="flex items-center">
-            <img className="w-12 h-12 max-sm:w-10 max-sm:h-10 rounded-full mr-2 bg-white" src="/sample/avatar.png" alt="Avatar of User" />
+            <Image className="w-12 h-12 max-sm:w-10 max-sm:h-10 rounded-full mr-2 bg-white" src="/sample/avatar.png" alt="Avatar of User" />
             <h5 className="text-slate-500 max-sm:text-sm text-md dark:text-white max-md:text-[sm] font-medium">Aryan Thakor</h5>
-            <img className="w-5 h-5 ml-1" src="/sample/verified.png" alt="Verified Icon" />
+            <Image className="w-5 h-5 ml-1" src="/sample/verified.png" alt="Verified Icon" />
           </div>
           <div className="flex items-center article-title">
             <h2 className="font-normal text-xl max-sm:text-sm">Sample Title</h2>
@@ -21,8 +21,8 @@ export function Artical() {
           <Image
           src={sampleImage}
           alt=""
-          className="object-cover pt-[20px] max-h-[200px] max-sm:shadow-md max-sm:h-[50%] sm:h-[100%]">
-          </Image>
+          className="object-cover pt-[20px] max-h-[200px] max-sm:shadow-md max-sm:h-[50%] sm:h-[100%]"/>
+       
         </div>
       </div>
 

@@ -1,33 +1,13 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import style from "./chat.module.css";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
-import axios from "axios";
-import { CornerDownLeft, Mic, Paperclip } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { messageSchema } from "@/schemas/messageSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import * as z from "zod";
 interface IMsgDataTypes {
   id: string;
@@ -118,7 +98,7 @@ const ChatPage = ({ socket, username, roomId }: any) => {
           setMessageData(Messages);
         });
     }
-  }, [roomId]);
+  }, [roomId,session.status]);
   console.log('sendind chat data ', chat)
   return (
     <>
@@ -143,7 +123,7 @@ const ChatPage = ({ socket, username, roomId }: any) => {
                               </div>
                               <span className="text-sm font-normal text-gray-500 dark:text-gray-400 text-right">Delivered</span>
                             </div>
-                            <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Jese image"></img>
+                            <Image className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Jese image"/>
                           </div>
                         </div>
                       )}
@@ -152,7 +132,7 @@ const ChatPage = ({ socket, username, roomId }: any) => {
                       {session.data?.user._id !== item.participantsId && (
                         <div>
                           <div className="w-full flex items-start  gap-2.5">
-                            <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Jese image"></img>
+                            <Image className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Jese image"/>
                             <div className="flex flex-col gap-1 w-full max-w-[320px]">
                               <div className="flex items-center space-x-2 rtl:space-x-reverse">
                                 <span className="text-sm font-semibold text-gray-900 dark:text-white">{item.fullname}</span>
@@ -189,7 +169,7 @@ const ChatPage = ({ socket, username, roomId }: any) => {
                               </div>
                               <span className="text-sm font-normal text-gray-500 dark:text-gray-400 text-right">Delivered</span>
                             </div>
-                            <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Jese image"></img>
+                            <Image className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Jese image"/>
                           </div>
                         </div>
                         // <div classNameName="  text-right p-1">{item.content}</div>
@@ -199,7 +179,7 @@ const ChatPage = ({ socket, username, roomId }: any) => {
                       {session.data?.user._id !== item.participantsId && (
                         <div>
                           <div className="w-full flex items-start  gap-2.5">
-                            <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Jese image"></img>
+                            <Image className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Jese image"/>
                             <div className="flex flex-col gap-1 w-full max-w-[320px]">
                               <div className="flex items-center space-x-2 rtl:space-x-reverse">
                                 <span className="text-sm font-semibold text-gray-900 dark:text-white">{item.fullname}</span>

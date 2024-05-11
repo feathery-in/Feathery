@@ -7,14 +7,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Facebook, Github, Instagram, Linkedin } from "lucide-react";
+import { Github, Linkedin } from "lucide-react";
 import Image from "next/image";
-import aryanThakor from "./img/landing-page-people/aryan-thakor.jpg";
-import anant from "./img/landing-page-people/anant.jpg";
-import jenish from "./img/landing-page-people/jenish-patel.jpeg";
-import harsh from "./img/landing-page-people/harsh-shukla.png";
-import vipra from "./img/landing-page-people/vipra-dave.jpg";
-import rutvi from "./img/landing-page-people/rutvi-shah.jpg";
+// import aryanThakor from "./img/landing-page-people/aryan-thakor.jpg";
+import anant from "@/components/public/img/landing-page-people/anant.jpg";
+import aryanThakor from "@/components/public/img/landing-page-people/aryan-thakor.jpg";
+import harsh from "@/components/public/img/landing-page-people/harsh-shukla.png";
+import jenish from "@/components/public/img/landing-page-people/jenish-patel.jpeg";
+import rutvi from "@/components/public/img/landing-page-people/rutvi-shah.jpg";
+// import vipra from "@/components/public/img/landing-page-people/vipra-dave.jpg";
 
 interface TeamProps {
   imageUrl: any;
@@ -82,19 +83,19 @@ const teamList: TeamProps[] = [
       },
     ],
   },
-  {
-    imageUrl: vipra,
-    name: "Vipra Dave",
-    position: "Social Media Lead and Designer",
-    content:"Seize the day",
-    socialNetworks: [
-      { name: "Linkedin", url: "https://www.linkedin.com/in/vipra-dave/" },
-      {
-        name: "Github",
-        url: "https://github.com/vipradave",
-      },
-    ],
-  },
+  // {
+  //   imageUrl: vipra,
+  //   name: "Vipra Dave",
+  //   position: "Social Media Lead and Designer",
+  //   content:"Seize the day",
+  //   socialNetworks: [
+  //     { name: "Linkedin", url: "https://www.linkedin.com/in/vipra-dave/" },
+  //     {
+  //       name: "Github",
+  //       url: "https://github.com/vipradave",
+  //     },
+  //   ],
+  // },
   {
     imageUrl: rutvi,
     name: "Rutvi Shah",
