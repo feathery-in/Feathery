@@ -1,39 +1,14 @@
 import {
-  Badge,
-  CircleUser,
   Home,
   Leaf,
-  LineChart,
-  Menu,
   Newspaper,
-  Package,
-  Package2,
   PanelLeft,
-  Search,
   Settings,
-  ShoppingCart,
-  Users,
-  Users2,
+  Users2
 } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { Input } from "./ui/input";
+import Link from "next/link";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import Link from "next/link";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
 
 export default function NavBar() {
   return (

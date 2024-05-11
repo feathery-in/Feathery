@@ -28,46 +28,25 @@ interface RouteProps {
 
 const routeList: RouteProps[] = [
   {
-    href: "#howItWorks",
+    href: "/#howItWorks",
     label: "How it works",
   },
   {
-    href: "#testimonials",
+    href: "/#testimonials",
     label: "Testimonials",
   },
   {
-    href: "#team",
+    href: "/#team",
     label: "Team",
   },
   {
-    href: "#faq",
+    href: "/#faq",
     label: "FAQ",
   },
 ];
 export default function NavBar() {
-  const [username, setUsername] = React.useState("");
-  const [image, setImage] = React.useState("");
+
   const session = useSession();
-  useEffect(() => {
-    // console.log('session from headers',session.data?.user.username)
-    if (session.status === "authenticated") {
-      const getusername = async () => {
-
-        if (session.data.user.username) {
-
-          setUsername(session.data.user.username);
-          setImage(session.data.user.image!);
-        } else {
-          const response = await axios.get(
-            `/api/get-user-profile-email?email=${session.data.user.email}`
-          );
-          setUsername(response.data.userDetails.username);
-          setImage(response.data.userDetails.image);
-        }
-      };
-      getusername();
-    }
-  }, [session]);
   // console.log("username", username);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -121,16 +100,19 @@ export default function NavBar() {
                 >
                     <>
                       <Avatar>
+                        {session.data?.user.image&&(
                         <AvatarImage
-                          src={image}
+                          src={session.data?.user.image}
                           alt={session.data?.user.name!}
                         />
-                        <AvatarFallback>
+                        )}
+                         <AvatarFallback>
                           {session.data?.user
                             .name!.split(" ")
                             .map((chunk) => chunk[0])
                             .join("")}
                         </AvatarFallback>
+                        
                       </Avatar>
                     </>
                   <span className="sr-only">Toggle user menu</span>
@@ -141,7 +123,7 @@ export default function NavBar() {
                 {session.status === "authenticated" && (
                   <>
                     <DropdownMenuItem>
-                      <Link href={`/${username}`}>Profile</Link>
+                      <Link href={`/${session.data.user.username}`}>Profile</Link>
                     </DropdownMenuItem>
                     {/* <DropdownMenuItem>Support</DropdownMenuItem> */}
                     <DropdownMenuSeparator />
@@ -219,10 +201,13 @@ export default function NavBar() {
                   {session.status === "authenticated" && (
                     <>
                       <Avatar>
-                        <AvatarImage
-                          src={image}
+                        {session.data.user.image&&(
+                          <AvatarImage
+                          src={session.data.user.image}
                           alt={session.data.user.name!}
                         />
+                        )}
+                        
                         <AvatarFallback>
                           {session.data.user
                             .name!.split(" ")
@@ -251,7 +236,7 @@ export default function NavBar() {
                 {session.status === "authenticated" && (
                   <>
                     <DropdownMenuItem>
-                      <Link href={`/${username}`}>Profile</Link>
+                      <Link href={`/${session.data.user.username}`}>Profile</Link>
                     </DropdownMenuItem>
                     {/* <DropdownMenuItem>Support</DropdownMenuItem> */}
                     <DropdownMenuSeparator />

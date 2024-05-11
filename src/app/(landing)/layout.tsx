@@ -1,6 +1,8 @@
 import AuthProvider from "@/context/authProvider"
 import "../globals.css";
 import { ThemeProvider } from "@/context/themProvider";
+import Footer from "@/components/public/footer";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata = {
   title: 'Next.js',
@@ -13,10 +15,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <AuthProvider>
       <ThemeProvider>
-      <body>{children}</body>
+      <body>{children}
+      <Footer/>
+      <Toaster/>
+      </body>
       </ThemeProvider>
       </AuthProvider>
     </html>

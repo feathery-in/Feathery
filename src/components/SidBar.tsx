@@ -1,3 +1,4 @@
+"use client"
 import {
   Home,
   LineChart,
@@ -9,11 +10,15 @@ import Link from "next/link";
 import NavBar from "./NavBar";
 import Upload from "./Upload";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
+import { useSession } from "next-auth/react";
   
   export default function SidBar() {
+    const session =useSession()
     return (
       <>
-        <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
+      {session.status==='authenticated'&& session.data.user ?(
+      <>
+      <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
           <nav className="flex flex-col items-center gap-4 px-2 mt-14 sm:py-5">
             <NavBar/>
             <TooltipProvider>
@@ -118,6 +123,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/t
             </TooltipProvider>
           </nav>
         </aside>
+      </>):(null)}
+        
       </>
     );
   }
