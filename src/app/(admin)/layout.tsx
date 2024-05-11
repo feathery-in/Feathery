@@ -20,7 +20,7 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="">
+    <html lang="en" className="dark">
       <AuthProvider>
         <ThemeProvider>
           <body className="">

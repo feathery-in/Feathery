@@ -1,11 +1,12 @@
 import mongoose,{Schema,Document} from "mongoose";
+import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
 
 
 export interface Post{
     title:string,
     description:string
     img:[]
-    admin:{};
+    admin:Schema.Types.ObjectId;
 }
 
 const PostSchema:Schema<Post>=new Schema({
@@ -22,6 +23,7 @@ const PostSchema:Schema<Post>=new Schema({
     },
     img:[],
 },{timestamps:true})
+PostSchema.plugin(mongooseAggregatePaginate)
 
 const PostModel=(mongoose.models.Post as mongoose.Model<Post>)||(mongoose.model<Post>("Post",PostSchema))
 export default PostModel;

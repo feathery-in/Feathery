@@ -10,17 +10,7 @@ export interface Image{
     publicId:string
 }
 
-const MessageSchema:Schema<Message>=new Schema({
-    content:{
-        type:String,
-        required:true
-    },
-    createdAt:{
-        type:Date,
-        required:true,
-        default:Date.now
-    }
-})
+
 const ImageSchema:Schema<Image>=new Schema({
     Url:{
         type:String,
@@ -41,9 +31,6 @@ export interface User{
     isVerified:boolean,
     image:string,
     imgPublicId:string,
-    message:Message[],
-    followers:{},
-    following:{},
 }
 
 const UserSchema:Schema<User>=new Schema({
@@ -71,11 +58,11 @@ const UserSchema:Schema<User>=new Schema({
     },
     verifyCode:{
         type:String,
-        // required:true
+        required:true
     },
     verifyCodeExpiry:{
         type:Date,
-        // required:true,    
+        required:true,    
     },
     isVerified:{
         type:Boolean,
@@ -85,14 +72,6 @@ const UserSchema:Schema<User>=new Schema({
         type:Boolean,
         default:true
     },
-    followers: [{
-        type: Schema.Types.ObjectId,
-        ref: 'UserModel'
-      }],
-    following: [{
-        type: Schema.Types.ObjectId,
-        ref: 'UserModel'
-      }],
     
     image:{
         type:String,
@@ -100,7 +79,6 @@ const UserSchema:Schema<User>=new Schema({
     imgPublicId:{
         type:String,
     },
-    message:[MessageSchema],
 })
 
 const UserModel=(mongoose.models.User as mongoose.Model<User>)||(mongoose.model<User>("User",UserSchema))
