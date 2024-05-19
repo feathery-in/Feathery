@@ -12,11 +12,12 @@ export async function GET(req: Request) {
   const session = await getServerSession(authOptions);
 
   await dbConnect();
-  try {
-    const { searchParams } = new URL(req.url);
+  const { searchParams } = new URL(req.url);
     const queryParam = {
       useremail: searchParams.get("email"),
     };
+  try {
+    
     // validate with zod
     const result = UserEmailQuerySchema.safeParse(queryParam);
     // console.log(result)

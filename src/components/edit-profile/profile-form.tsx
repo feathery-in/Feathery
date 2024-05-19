@@ -90,6 +90,7 @@ export default function ProfileForm() {
           public_id: image?.public_id,
         }));
         if (urlsAndPublicIds) {
+          
           const response = await axios
             .post("/api/profile-update", { data, urlsAndPublicIds, useremail })
             .then(async (response) => {
@@ -129,12 +130,15 @@ export default function ProfileForm() {
         setUsernameMessage("");
 
         try {
-          const response = await axios.get(
+          setTimeout(async () => {
+            const response = await axios.get(
             `/api/check-username-unique?username=${username}`
           );
           // console.log(response.data.message)
           let message = response.data.message;
           setUsernameMessage(message);
+          }, 1000)
+          
         } catch (error: any) {
           const axiosError = error as AxiosError<ApiResponse>;
           setUsernameMessage(

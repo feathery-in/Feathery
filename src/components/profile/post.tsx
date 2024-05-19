@@ -23,7 +23,8 @@ export default function Post() {
         <div className="bg-secondary border rounded-sm max-w-lg">
           <div className="flex items-center px-4 py-3">
             <Image src={aryan} className="h-8 w-8 rounded-full" alt=""></Image>
-            <img
+            <Image
+            alt=""
               className="h-8 w-8 rounded-full"
               src="https://media.licdn.com/dms/image/D4D03AQGMjM-4kcLgOw/profile-displayphoto-shrink_200_200/0/1695286110800?e=1720051200&v=beta&t=44pywbf2xq34Bp85l-HZz9cM7x_V6JRxSEvTRGY5tKU"
             />
@@ -52,7 +53,8 @@ export default function Post() {
               {messages.map((message, index) => (
                 <CarouselItem key={index} className="">
                   <Card>
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+                    <Image 
+                    alt="" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
                   </Card>
                 </CarouselItem>
               ))}

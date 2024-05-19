@@ -237,13 +237,11 @@ export default function PublicProfile({ params }: any) {
       ) : (
         <>
           <div className="text-center font-bold text-3xl m-auto">
-            User with "{params.username}" usernaem not found{" "}
+            User with {params.username} usernaem not found{" "}
           </div>
         </>
       )}
-      {/* <!-- <div  className="w-full  flex justify-center bg-[#c9ced3]" style="min-height: 100vh; height: 100%;"> --> */}
-
-      {/* <!-- Main modal --> */}
+    
     </>
   );
 }

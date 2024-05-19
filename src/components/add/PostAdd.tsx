@@ -151,7 +151,7 @@ export default function PostAdd() {
               setMessage(message);
         });
       toast({
-        title: `Error post added`,
+        title: `post added success`,
         description: message,
         variant: "destructive",
       });

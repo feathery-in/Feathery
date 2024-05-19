@@ -96,7 +96,7 @@ export default function HeroCard(){
 
         <CardContent className="text-center pb-2">
           <p>
-          Feathery is a good platform for expressing my achivements, get other's opinions thru comments, find people I can work with and solve my problems. I love the idea behind the paltform!
+          Feathery is a good platform for expressing my achivements&sbquo; get other&prime;s opinions thru comments&sbquo; find people I can work with and solve my problems{"."}I love the idea behind the paltform!
           </p>
         </CardContent>
 
@@ -160,12 +160,12 @@ export default function HeroCard(){
           </Image>
           <CardTitle className="text-center">Piyush Patel</CardTitle>
           <CardDescription className="font-normal text-primary">
-            Founder, Pintube.com
+            Founder&sbquo; Pintube.com
           </CardDescription>
           </CardHeader>
           <CardContent className="text-center pb-2">
           <p>
-          It's the ultimate space for transparency and collaboration in our continuous journey of growth.
+          It&prime;s the ultimate space for transparency and collaboration in our continuous journey of growth.
           </p>
         </CardContent>
 
@@ -195,7 +195,7 @@ export default function HeroCard(){
           <div>
             <CardTitle>Learn in public</CardTitle>
             <CardDescription className="text-md mt-2">
-            Share your learning journey openly, connect with fellow learners, and grow together in a supportive community focused on knowledge sharing and personal development.
+            Share your learning journey openly&sbquo; connect with fellow learners&sbquo; and grow together in a supportive community focused on knowledge sharing and personal development.
             </CardDescription>
           </div>
         </CardHeader>

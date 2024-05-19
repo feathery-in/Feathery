@@ -71,9 +71,13 @@ export default function SignIn() {
           const response = await axios.get(
             `/api/check-email-login?email=${email}`
           );
-          // console.log(response.data.message)
           let message = response.data.message;
+       
           setEmailMessage(message);
+          
+          
+          // console.log(response.data.message)
+          
         } catch (error: any) {
           const axiosError = error as AxiosError<ApiResponse>;
           setEmailMessage(

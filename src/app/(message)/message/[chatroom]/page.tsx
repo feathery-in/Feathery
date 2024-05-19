@@ -15,7 +15,6 @@ interface UserData {
   participantsId: string;
   fullname: string;
   image: any;
-
 }
 export default function ChatRoom({ params }: any) {
   const [messagedata, setMessageData] = useState<UserData[]>([]);
@@ -23,8 +22,7 @@ export default function ChatRoom({ params }: any) {
     content: "",
   });
 
-
-  const [participates, setParticipates] = useState<UserData[]>([])
+  const [participates, setParticipates] = useState<UserData[]>([]);
   const router = useRouter();
   const session = useSession();
   if (session.status === "unauthenticated") {
@@ -34,47 +32,40 @@ export default function ChatRoom({ params }: any) {
   const id: string = params.chatroom;
   // api call
   // console.log(id)
-  useEffect(() => {
-    // console.log('line 39 ')
-    if (session.status === "authenticated") {
-      console.log("clickd", id);
-      axios
-        .get(`/api/chat/get-all-messages?chatroomid=${id}`)
-        .then((response) => {
-          // console.log("response get all message ", response);
-          // console.log("Response:", response.data.participate);
-          const participatedetail = response.data.participate.map(
-            (participatedetail: { imag: any; fullname: string; username: string }) => ({
+  // useEffect(() => {
+  //   if (params) {
+  //     console.log("clicked", id);
+  //     axios
+  //       .get(`/api/chat/get-all-messages?chatroomid=${id}`)
+  //       .then((response) => {
+  //         const participatedetail = response.data.participate.map(
+  //           (participatedetail: {
+  //             imag: any;
+  //             fullname: string;
+  //             username: string;
+  //           }) => ({})
+  //         );
+  //         const Messages = response.data.messages.map(
+  //           (Messages: { chat: any; sender: any; content: any }) => ({
+  //             id: Messages.chat,
+  //             content: Messages.content,
+  //             participantsId: Messages.sender._id,
+  //           })
+  //         );
+  //         setMessageData(Messages);
+  //       });
+  //   }
+  // }, [id, params]);
 
-            })
-          )
-          const Messages = response.data.messages.map(
-            (Messages: { chat: any; sender: any; content: any }) => ({
-              id: Messages.chat,
-              content: Messages.content,
-              participantsId: Messages.sender._id,
-            })
-          );
-          setMessageData(Messages);
-        });
-    }
-  }, [params.chatroom]);
   // console.log("message data is:-", messagedata);
 
   // send message
 
-
-  // socket io 
+  // socket io
   let socket: any;
 
   socket = io("http://localhost:3001");
-  useEffect(() => {
-
-    socket.emit("join_room", params.chatroom);
-    // setTimeout(() => {}, 1000);
-
-  }, []);
-
+  socket.emit("join_room", params.chatroom);
 
   return (
     <>
@@ -99,7 +90,11 @@ export default function ChatRoom({ params }: any) {
               </div>
             </div>
             {/* add page   */}
-            <ChatPage socket={socket} roomId={params.chatroom} username={session.data?.user._id} />
+            <ChatPage
+              socket={socket}
+              roomId={params.chatroom}
+              username={session.data?.user._id}
+            />
           </div>
         </div>
       </div>

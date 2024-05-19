@@ -25,7 +25,7 @@ export default function About() {
               </h2>
               <p className="text-xl text-muted-foreground mt-4">
                 
-              Welcome to Feathery, where we believe in learning together out in the open. We think that when you share what you're learning, it helps you grow and inspires others too. Our platform makes it easy for you to show your progress, connect with others, and learn new things together. Come join us as we make learning fun and accessible for everyone.
+              Welcome to Feathery&sbquo;where we believe in learning together out in the open{'.'} We think that when you share what you&prime;re learning&sbquo; it helps you grow and inspires others too{'.'} Our platform makes it easy for you to show your progress&sbquo; connect with others&sbquo; and learn new things together{'.'} Come join us as we make learning fun and accessible for everyone{'.'}
               </p>
             </div>
 
